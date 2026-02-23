@@ -6,11 +6,8 @@ import os
 params = yaml.safe_load(open("params.yaml"))
 df = pd.read_csv('data/raw/raw.csv')
 
-# --- LA CORRECTION EST ICI ---
-# On supprime la colonne date car elle contient du texte
 if 'date' in df.columns:
     df = df.drop(columns=['date'])
-# -----------------------------
 
 X = df.drop('silica_concentrate', axis=1)
 y = df['silica_concentrate']
@@ -28,4 +25,4 @@ X_test.to_csv('data/processed/X_test.csv', index=False)
 y_train.to_csv('data/processed/y_train.csv', index=False)
 y_test.to_csv('data/processed/y_test.csv', index=False)
 
-print("Fini ! Fichiers créés sans la colonne date.")
+print("Fini !")
