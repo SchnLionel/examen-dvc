@@ -27,6 +27,7 @@ stages:
     deps:
       - src/models/grid_march.py
       - data/processed/X_train_scaled.csv
+      - data/processed/y_train.csv
     params:
       - gridsearch
     outs:
@@ -37,6 +38,8 @@ stages:
     deps:
       - src/models/training.py
       - models/best_params.pkl
+      - data/processed/X_train_scaled.csv
+      - data/processed/y_train.csv
     outs:
       - models/gbr_model.pkl
 
@@ -45,6 +48,8 @@ stages:
     deps:
       - src/models/evaluate.py
       - models/gbr_model.pkl
+      - data/processed/X_test_scaled.csv
+      - data/processed/y_test.csv
     metrics:
       - metrics/scores.json:
           cache: false
